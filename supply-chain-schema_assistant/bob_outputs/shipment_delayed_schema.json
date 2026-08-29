@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shipment Delayed Event",
+  "type": "object",
+  "properties": {
+    "shipment_id": {
+      "type": "string"
+    },
+    "delay_reason": {
+      "type": "string",
+      "enum": ["weather", "mechanical_issue", "traffic", "customs", "other"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "facility_id": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "country": { "type": "string" }
+      },
+      "required": [
+        "facility_id",
+        "city",
+        "state",
+        "country"
+      ]
+    },
+    "delay_duration_minutes": {
+      "type": "number",
+      "minimum": 0
+    },
+    "carrier": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "shipment_id",
+    "delay_reason",
+    "timestamp",
+    "location"
+  ]
+}
